@@ -42,11 +42,6 @@ defineProps({
           >
             Abrir link do vídeo
           </a>
-
-          <p class="small-note mt-3 mb-0">
-            Link atual:
-            <span>{{ videoUrl }}</span>
-          </p>
         </div>
 
         <div class="col-lg-5">
