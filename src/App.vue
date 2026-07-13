@@ -4,17 +4,52 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import QrSection from "./components/QrSection.vue";
 import {
-  navItems,
-  scams,
-  sources,
-  videoUrl,
-} from "./data/content";
+  AudioLines,
+  BookText,
+  CircleDollarSign,
+  Headset,
+  LayoutGrid,
+  Link2,
+  QrCode,
+  ShieldCheck,
+  Smartphone,
+  Sparkles,
+  UserRound,
+} from "@lucide/vue";
+import { navItems, scams, sources, videoUrl } from "./data/content";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const pageRef = ref(null);
 let gsapContext;
 let librasWidgetLoaded = false;
+
+const heroHighlights = [
+  {
+    icon: LayoutGrid,
+    label: "leitura visual clara",
+  },
+  {
+    icon: QrCode,
+    label: "acesso rápido em Libras",
+  },
+  {
+    icon: ShieldCheck,
+    label: "prevenção direta e objetiva",
+  },
+];
+
+const scamIconMap = {
+  "user-round": UserRound,
+  "link-2": Link2,
+  headset: Headset,
+  "circle-dollar-sign": CircleDollarSign,
+  "audio-lines": AudioLines,
+};
+
+function resolveScamIcon(iconName) {
+  return scamIconMap[iconName] || Sparkles;
+}
 
 function setupScamAnimations() {
   if (!pageRef.value) return;
@@ -29,24 +64,28 @@ function setupScamAnimations() {
         y: -18,
         duration: 0.55,
       })
-      .from(q(".hero-copy > *"), {
-        autoAlpha: 0,
-        y: 28,
-        duration: 0.72,
-        stagger: 0.08,
-      }, "-=0.18")
-      .from(q(".hero-visual"), {
-        autoAlpha: 0,
-        x: 26,
-        scale: 0.96,
-        duration: 0.9,
-      }, "-=0.55");
+      .from(
+        q(".hero-copy > *"),
+        {
+          autoAlpha: 0,
+          y: 28,
+          duration: 0.72,
+          stagger: 0.08,
+        },
+        "-=0.18",
+      )
+      .from(
+        q(".hero-visual"),
+        {
+          autoAlpha: 0,
+          x: 26,
+          scale: 0.96,
+          duration: 0.9,
+        },
+        "-=0.55",
+      );
 
-    const revealSections = [
-      ".info-card",
-      ".qr-shell",
-      ".sources-card",
-    ];
+    const revealSections = [".info-card", ".qr-shell", ".sources-card"];
 
     revealSections.forEach((selector) => {
       const element = q(selector)[0];
@@ -66,10 +105,7 @@ function setupScamAnimations() {
       });
     });
 
-    const staggerGroups = [
-      ".info-pill-grid span",
-      ".source-item",
-    ];
+    const staggerGroups = [".info-pill-grid span", ".source-item"];
 
     staggerGroups.forEach((selector) => {
       const items = q(selector);
@@ -127,7 +163,9 @@ function setupScamAnimations() {
 function setupLibrasWidget() {
   if (typeof window === "undefined" || librasWidgetLoaded) return;
 
-  const existingScript = document.querySelector('script[data-vlibras-widget="true"]');
+  const existingScript = document.querySelector(
+    'script[data-vlibras-widget="true"]',
+  );
 
   const bootWidget = () => {
     if (librasWidgetLoaded) return;
@@ -197,23 +235,57 @@ onBeforeUnmount(() => {
       <div class="row align-items-center g-4 g-lg-5">
         <div class="col-lg-7 hero-copy">
           <p class="eyebrow">Tema ou título</p>
-          <h1 class="display-title">Cinco golpes digitais e como preveni-los com informação acessível em Libras</h1>
+          <h1 class="display-title">
+            Cinco golpes digitais e como preveni-los com informação acessível em
+            Libras
+          </h1>
           <p class="lead text-secondary-custom">
-            Conheça golpes comuns, entenda como eles acontecem e veja formas simples de prevenção.
+            Conheça golpes comuns, entenda como eles acontecem e veja formas
+            simples de prevenção.
           </p>
 
           <div class="d-flex flex-wrap gap-3 mt-4">
-            <a class="btn btn-accent btn-lg rounded-pill px-4" href="#golpes">Ver os 5 golpes</a>
-            <a class="btn btn-outline-theme btn-lg rounded-pill px-4" href="#libras">Ver QR Code</a>
+            <a class="btn btn-accent btn-lg rounded-pill px-4" href="#golpes"
+              >Ver os 5 golpes</a
+            >
+            <a
+              class="btn btn-outline-theme btn-lg rounded-pill px-4"
+              href="#libras"
+              >Ver QR Code</a
+            >
+          </div>
+
+          <div class="hero-highlights" aria-label="Destaques da página">
+            <span
+              v-for="item in heroHighlights"
+              :key="item.label"
+              class="hero-highlight-pill"
+            >
+              <component :is="item.icon" aria-hidden="true" />
+              {{ item.label }}
+            </span>
           </div>
         </div>
 
         <div class="col-lg-5 hero-visual">
-          <img
-            class="img-fluid hero-image"
-            src="/assets/hero-landing.svg"
-            alt="Ilustração com celular, escudo, mãos sinalizando e elementos visuais de acessibilidade."
-          />
+          <div class="hero-poster glass-card">
+            <div class="hero-poster__ribbon">
+              <Sparkles aria-hidden="true" />
+              prevenção visual para pessoas surdas
+            </div>
+
+            <img
+              class="img-fluid hero-image"
+              src="/assets/hero-landing.svg"
+              alt="Ilustração com celular, escudo, mãos sinalizando e elementos visuais de acessibilidade."
+            />
+
+            <div class="hero-poster__footer">
+              <span><Smartphone aria-hidden="true" /> mobile first</span>
+              <span><QrCode aria-hidden="true" /> QR para Libras</span>
+              <span><BookText aria-hidden="true" /> guia visual</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -224,61 +296,72 @@ onBeforeUnmount(() => {
           <div>
             <p class="eyebrow">Sobre o site</p>
             <div class="section-headline">
-              <h2 class="section-title">Um guia visual para evitar golpes digitais</h2>
+              <h2 class="section-title">
+                Um guia visual para evitar golpes digitais
+              </h2>
               <span class="headline-badge">
-                <i class="bi bi-shield-check" aria-hidden="true"></i>
+                <ShieldCheck aria-hidden="true" />
                 conteúdo educativo
               </span>
             </div>
           </div>
 
           <div class="info-card__seal" aria-hidden="true">
-            <i class="bi bi-phone-vibrate"></i>
+            <Smartphone />
           </div>
         </div>
 
         <div class="info-mini-grid">
           <article class="info-mini-card">
             <span class="info-mini-card__icon">
-              <i class="bi bi-lightbulb-fill" aria-hidden="true"></i>
+              <Sparkles aria-hidden="true" />
             </span>
             <h3>Dicas de prevenção</h3>
-            <p>Alertas simples para identificar sinais de golpe no dia a dia.</p>
+            <p>
+              Alertas simples para identificar sinais de golpe no dia a dia.
+            </p>
           </article>
 
           <article class="info-mini-card">
             <span class="info-mini-card__icon">
-              <i class="bi bi-grid-1x2-fill" aria-hidden="true"></i>
+              <LayoutGrid aria-hidden="true" />
             </span>
             <h3>Exemplos</h3>
-            <p>Cinco casos comuns explicados de forma curta, direta e visual.</p>
+            <p>
+              Cinco casos comuns explicados de forma curta, direta e visual.
+            </p>
           </article>
 
           <article class="info-mini-card">
             <span class="info-mini-card__icon">
-              <i class="bi bi-journal-richtext" aria-hidden="true"></i>
+              <BookText aria-hidden="true" />
             </span>
             <h3>Cartilha</h3>
-            <p>Conteúdo organizado para consulta rápida, com foco em prevenção.</p>
+            <p>
+              Conteúdo organizado para consulta rápida, com foco em prevenção.
+            </p>
           </article>
         </div>
       </div>
     </section>
 
-    <section
-      id="golpes"
-      class="featured-scams-parallax mt-4"
-    >
+    <section id="golpes" class="featured-scams-parallax mt-4">
       <div class="featured-scams-parallax__bg" aria-hidden="true"></div>
       <div class="container">
         <div class="featured-scams-parallax__inner py-4 py-lg-5">
           <div class="featured-scams-parallax__header">
-            <span class="featured-scams-parallax__overline">Cartilha de prevenção</span>
+            <span class="featured-scams-parallax__overline"
+              >Cartilha de prevenção</span
+            >
             <h2 class="featured-scams-parallax__title">
-              Cinco golpes explicados com <span class="brand-gradient-text">prevenção simples e visual</span>
+              Cinco golpes explicados com
+              <span class="brand-gradient-text"
+                >prevenção simples e visual</span
+              >
             </h2>
             <p class="featured-scams-parallax__desc">
-              A ideia desta seção é mostrar como o golpe acontece, quais sinais chamam atenção e o que fazer para evitar cair nele.
+              A ideia desta seção é mostrar como o golpe acontece, quais sinais
+              chamam atenção e o que fazer para evitar cair nele.
             </p>
           </div>
 
@@ -304,12 +387,23 @@ onBeforeUnmount(() => {
                       :src="scam.image"
                       :alt="scam.imageAlt || scam.title"
                     />
-                    <span class="featured-scam-card__image-label">{{ scam.label }}</span>
+                    <span class="featured-scam-card__image-label">{{
+                      scam.label
+                    }}</span>
                   </template>
                   <template v-else>
-                    <span class="featured-scam-card__label">{{ scam.label }}</span>
-                    <i :class="['bi', scam.icon, 'featured-scam-card__media-icon']" aria-hidden="true"></i>
-                    <div class="featured-scam-card__media-grid" aria-hidden="true">
+                    <span class="featured-scam-card__label">{{
+                      scam.label
+                    }}</span>
+                    <component
+                      :is="resolveScamIcon(scam.icon)"
+                      class="featured-scam-card__media-icon"
+                      aria-hidden="true"
+                    />
+                    <div
+                      class="featured-scam-card__media-grid"
+                      aria-hidden="true"
+                    >
                       <span></span>
                       <span></span>
                       <span></span>
@@ -324,7 +418,9 @@ onBeforeUnmount(() => {
                 <h3>{{ scam.title }}</h3>
                 <p>{{ scam.description }}</p>
                 <ul class="featured-scam-card__features">
-                  <li v-for="feature in scam.features" :key="feature">{{ feature }}</li>
+                  <li v-for="feature in scam.features" :key="feature">
+                    {{ feature }}
+                  </li>
                 </ul>
                 <div class="featured-scam-card__cta">
                   <strong>Como prevenir:</strong>
@@ -345,25 +441,41 @@ onBeforeUnmount(() => {
         <div class="section-headline">
           <h2 class="section-title">De onde vieram as informações</h2>
           <span class="headline-badge">
-            <i class="bi bi-journal-text" aria-hidden="true"></i>
+            <BookText aria-hidden="true" />
             referências do conteúdo
           </span>
         </div>
         <p class="section-copy">
-          Fontes públicas usadas para montar o material. Para saber mais, abra os links abaixo.
+          Fontes públicas usadas para montar o material. Para saber mais, abra
+          os links abaixo.
         </p>
 
         <div class="row g-3 mt-1">
-          <div v-for="source in sources" :key="source.title" class="col-12 col-lg-6">
-            <article class="source-item h-100">
+          <div
+            v-for="(source, index) in sources"
+            :key="source.title"
+            class="col-12 col-lg-6"
+          >
+            <article
+              class="source-item h-100"
+              :class="{ 'source-item--alt': index % 2 === 1 }"
+            >
               <div class="source-topline">
                 <span class="source-icon">
-                  <i :class="['bi', source.icon]" aria-hidden="true"></i>
+                  <component
+                    :is="source.icon === 'book-text' ? BookText : ShieldCheck"
+                    aria-hidden="true"
+                  />
                 </span>
                 <h3>{{ source.title }}</h3>
               </div>
               <p>{{ source.description }}</p>
-              <a :href="source.url" target="_blank" rel="noreferrer" class="source-link">
+              <a
+                :href="source.url"
+                target="_blank"
+                rel="noreferrer"
+                class="source-link"
+              >
                 {{ source.linkLabel }}
                 <span aria-hidden="true">↗</span>
               </a>
@@ -383,7 +495,8 @@ onBeforeUnmount(() => {
 
   <footer class="container pb-4 text-center">
     <p class="footer-note mb-0">
-      Baseado na Cartilha de Prevenção contra Golpes e no Guia Básico de Acessibilidade na Comunicação.
+      Baseado na Cartilha de Prevenção contra Golpes e no Guia Básico de
+      Acessibilidade na Comunicação.
     </p>
   </footer>
 </template>

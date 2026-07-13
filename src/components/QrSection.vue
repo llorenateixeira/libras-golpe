@@ -1,4 +1,6 @@
 <script setup>
+import { Languages, PlayCircle, QrCode, Smartphone } from "@lucide/vue";
+
 defineProps({
   videoUrl: {
     type: String,
@@ -16,19 +18,20 @@ defineProps({
           <div class="section-headline">
             <h2 class="section-title mb-0">Acesse o vídeo em Libras</h2>
             <span class="headline-badge">
-              <i class="bi bi-qr-code-scan" aria-hidden="true"></i>
+              <QrCode aria-hidden="true" />
               acesso rápido
             </span>
           </div>
 
           <p class="section-copy mt-3">
-            Escaneie o QR Code ou abra o link para assistir ao conteúdo em Libras.
+            Escaneie o QR Code ou abra o link para assistir ao conteúdo em
+            Libras.
           </p>
 
           <div class="qr-feature-strip" aria-hidden="true">
-            <span><i class="bi bi-hands"></i>Libras</span>
-            <span><i class="bi bi-phone"></i>QR Code</span>
-            <span><i class="bi bi-play-circle"></i>vídeo</span>
+            <span><Languages aria-hidden="true" />Libras</span>
+            <span><Smartphone aria-hidden="true" />QR Code</span>
+            <span><PlayCircle aria-hidden="true" />vídeo</span>
           </div>
 
           <a
@@ -47,14 +50,16 @@ defineProps({
         </div>
 
         <div class="col-lg-5">
-          <figure class="content-card qr-card text-center mb-0">
+          <figure class="content-card qr-card text-center mb-0 qr-visual">
             <img
-              class="img-fluid mx-auto"
-              src="/assets/qr-video-libras.svg"
-              alt="QR Code de exemplo para o vídeo em Libras do trabalho."
+              class="img-fluid mx-auto qr-visual__image"
+              src="/assets/qrcode.png"
+              alt="QR code em imagem PNG para acessar o vídeo em Libras."
+              loading="lazy"
+              decoding="async"
             />
             <figcaption class="small-note mt-3">
-              Troque pelo link final do vídeo em Libras do grupo.
+              QR code em PNG para o acesso ao vídeo em Libras do grupo.
             </figcaption>
           </figure>
         </div>
