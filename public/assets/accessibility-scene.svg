@@ -1,0 +1,26 @@
+<svg width="720" height="560" viewBox="0 0 720 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="560" rx="40" fill="#EEF6FF"/>
+  <path d="M64 448C64 403.817 99.8172 368 144 368H576C620.183 368 656 403.817 656 448V472H64V448Z" fill="#D7EAFB"/>
+  <circle cx="134" cy="150" r="56" fill="#FFD6A5"/>
+  <circle cx="586" cy="126" r="34" fill="#F7B267"/>
+  <rect x="292" y="90" width="136" height="86" rx="22" fill="white" stroke="#D8E1E8" stroke-width="6"/>
+  <path d="M326 134H394" stroke="#1D4E89" stroke-width="12" stroke-linecap="round"/>
+  <path d="M326 104H378" stroke="#E76F51" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="164" cy="292" r="34" fill="#F0C7A1"/>
+  <path d="M118 352C118 322.177 142.177 298 172 298H176C205.823 298 230 322.177 230 352V430H118V352Z" fill="#1D4E89"/>
+  <path d="M142 430C142 406.804 160.804 388 184 388H188V472H142V430Z" fill="#16324F"/>
+  <circle cx="542" cy="286" r="34" fill="#F0C7A1"/>
+  <path d="M492 354C492 323.072 517.072 298 548 298V298C578.928 298 604 323.072 604 354V430H492V354Z" fill="#E76F51"/>
+  <rect x="512" y="378" width="72" height="94" rx="20" fill="#173F5F"/>
+  <circle cx="356" cy="286" r="34" fill="#F0C7A1"/>
+  <path d="M306 354C306 323.072 331.072 298 362 298V298C392.928 298 418 323.072 418 354V430H306V354Z" fill="#2A9D8F"/>
+  <path d="M364 208C402.66 208 434 239.34 434 278C434 316.66 402.66 348 364 348C325.34 348 294 316.66 294 278C294 239.34 325.34 208 364 208Z" stroke="#1D4E89" stroke-width="8" stroke-dasharray="10 12"/>
+  <path d="M355 257C355 243.193 366.193 232 380 232H408C421.807 232 433 243.193 433 257V264H355V257Z" fill="#F7B267"/>
+  <path d="M342 278H426C439.255 278 450 288.745 450 302V310H318V302C318 288.745 328.745 278 342 278Z" fill="white"/>
+  <circle cx="121" cy="208" r="20" fill="#1D4E89"/>
+  <path d="M121 196V220" stroke="white" stroke-width="8" stroke-linecap="round"/>
+  <path d="M109 208H133" stroke="white" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="600" cy="202" r="24" fill="#173F5F"/>
+  <path d="M590 202H610" stroke="white" stroke-width="7" stroke-linecap="round"/>
+  <path d="M600 192V212" stroke="white" stroke-width="7" stroke-linecap="round"/>
+</svg>
