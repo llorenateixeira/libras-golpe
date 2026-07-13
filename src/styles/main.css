@@ -1445,6 +1445,32 @@ main > section {
   background: linear-gradient(160deg, #7d6bb7, #5f4f94);
 }
 
+/* Give each scam card a distinct, readable color treatment. */
+.featured-scam-card:nth-child(1) {
+  background: linear-gradient(135deg, #fff0f3, #fff9fa);
+  border-color: #ef3c50;
+}
+
+.featured-scam-card:nth-child(2) {
+  background: linear-gradient(135deg, #e7f7f5, #f7fcfc);
+  border-color: #2a9d8f;
+}
+
+.featured-scam-card:nth-child(3) {
+  background: linear-gradient(135deg, #fff1e5, #fffaf5);
+  border-color: #c97a3d;
+}
+
+.featured-scam-card:nth-child(4) {
+  background: linear-gradient(135deg, #fff7d9, #fffdf5);
+  border-color: #b8860b;
+}
+
+.featured-scam-card:nth-child(5) {
+  background: linear-gradient(135deg, #f2edff, #fbf9ff);
+  border-color: #7d6bb7;
+}
+
 .tone-warning .featured-scam-card__media-grid span,
 .tone-ocean .featured-scam-card__media-grid span,
 .tone-sunset .featured-scam-card__media-grid span,
