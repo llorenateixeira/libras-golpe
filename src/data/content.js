@@ -95,6 +95,8 @@ export const scams = [
     ],
     label: "Crédito fraudulento",
     icon: "circle-dollar-sign",
+    image: "/assets/fraude.jpg",
+    imageAlt: "Imagem de apoio para o golpe de falso emprestimo.",
     tone: "tone-gold",
   },
   {
@@ -110,6 +112,8 @@ export const scams = [
     ],
     label: "IA usada no golpe",
     icon: "audio-lines",
+    image: "/assets/clonagem.jpg",
+    imageAlt: "Imagem de apoio para o golpe de clonagem de voz com IA.",
     tone: "tone-plum",
   },
 ];
